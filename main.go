@@ -1,14 +1,16 @@
 package main
 
 import (
-	"SleepTrack/model"
+	"SleepTrack/seeders"
 	"SleepTrack/template"
 )
 
 func main() {
 	// Initialize variable
 	var action int
-	var users model.Users
+
+	// Seed users
+	users := seeders.SeedUsers()
 
 	// Show landing page
 	template.PrintLandingPage(&action)

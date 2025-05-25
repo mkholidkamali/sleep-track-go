@@ -1,8 +1,8 @@
 package model
 
 type SleepRecord struct {
-	date       int
-	sleepStart int
-	sleepEnd   int
-	duration   int
+	Date       int
+	SleepStart int
+	SleepEnd   int
+	Duration   float64
 }
