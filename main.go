@@ -9,15 +9,17 @@ import (
 func main() {
 	// Initialize variable
 	var action int
+	var loggedUserIndex int
 
 	// Seed users
 	users := seeders.SeedUsers()
 
 	// Show user login
+	loggedUserIndex = template.PrintIntroduction(&action, &users)
 
 	// Show landing page
-	template.PrintLandingPage(&action, &users[0])
-	fmt.Println(users)
-
-	//
+	if loggedUserIndex != -1 {
+		template.PrintLandingPage(&action, &users[loggedUserIndex])
+		fmt.Println(users)
+	}
 }

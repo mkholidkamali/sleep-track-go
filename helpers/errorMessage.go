@@ -11,3 +11,23 @@ func PrintErrorMessage() {
 	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	fmt.Println()
 }
+
+func PrintFailedLoginMessage() {
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+	fmt.Println("Username atau password anda salah!")
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+}
+
+func PrintFailedRegisterMessage() {
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+	fmt.Println("Username sudah digunakan!")
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+}

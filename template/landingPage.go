@@ -1,6 +1,7 @@
 package template
 
 import (
+	"SleepTrack/helpers"
 	"SleepTrack/model"
 	"SleepTrack/services/landingPage"
 	"fmt"
@@ -21,7 +22,7 @@ func PrintLandingPage(action *int, user *model.User) {
 		case 1:
 			user.Sleeps[0] = PrintInputNewHistory()
 		default:
-			fmt.Println("Dadah")
+			helpers.PrintExitMessage()
 		}
 	}
 }
