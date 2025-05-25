@@ -1,22 +1,27 @@
 package template
 
-import "fmt"
+import (
+	"SleepTrack/model"
+	"SleepTrack/services/landingPage"
+	"fmt"
+)
 
-func PrintLandingPage(action *int) {
+func PrintLandingPage(action *int, user *model.User) {
 	fmt.Println()
 	fmt.Println("=============================")
-	fmt.Println()
 	fmt.Println("Zzz...")
-	fmt.Println("Hoam... Halo selamat pagi !!")
+	fmt.Printf("Hoam... hm?, ehhh. Halo %s selamat pagi !!\n", user.Username)
 	fmt.Println("Gimana tidur kamu hari ini?")
-	fmt.Println("")
-	fmt.Println("Apa yang ingin kamu lakukan")
-	fmt.Println("1. Masukan waktu tidur kamu")
-	fmt.Println("2. Lihat jadwal tidur")
-	fmt.Println("3. Tentang aplikasi ini")
-	fmt.Println("4. Exit")
-	fmt.Println()
-	fmt.Print("> ")
-	fmt.Scan(action)
 	fmt.Println("=============================")
+
+	for *action != 4 {
+		landingPage.InputSelectedAction(action, user)
+
+		switch *action {
+		case 1:
+			user.Sleeps[0] = PrintInputNewHistory()
+		default:
+			fmt.Println("Dadah")
+		}
+	}
 }
