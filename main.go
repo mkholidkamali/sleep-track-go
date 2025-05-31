@@ -1,6 +1,7 @@
 package main
 
 import (
+	"SleepTrack/model"
 	"SleepTrack/seeders"
 	"SleepTrack/template"
 	"fmt"
@@ -10,12 +11,14 @@ func main() {
 	// Initialize variable
 	var action int
 	var loggedUserIndex int
+	var nUsers int
+	var users [model.MaxUser]model.User
 
 	// Seed users
-	users := seeders.SeedUsers()
+	users = seeders.SeedUsers(&nUsers)
 
 	// Show user login
-	loggedUserIndex = template.PrintIntroduction(&action, &users)
+	loggedUserIndex = template.PrintIntroduction(&action, &users, &nUsers)
 
 	// Show landing page
 	if loggedUserIndex != -1 {

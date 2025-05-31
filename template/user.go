@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func PrintIntroduction(action *int, users *[]model.User) int {
+func PrintIntroduction(action *int, users *[model.MaxUser]model.User, nUsers *int) int {
 	var loggedUserIndex int
 	var isSuccess bool
 
@@ -16,7 +16,7 @@ func PrintIntroduction(action *int, users *[]model.User) int {
 	fmt.Println("Aplikasi Pemantau Tidur Dan Kesehatan")
 	fmt.Println("=============================")
 
-	for loggedUserIndex != -1 && !isSuccess {
+	for !isSuccess {
 		fmt.Println("")
 		fmt.Println("Apakah kamu sudah punya akun?")
 		fmt.Println("1. Sudah")
@@ -28,30 +28,32 @@ func PrintIntroduction(action *int, users *[]model.User) int {
 		switch *action {
 		case 1:
 			loggedUserIndex = PrintLogin(users)
-			isSuccess = true
+			if loggedUserIndex != -1 {
+				isSuccess = true
+			}
 		case 2:
-			PrintRegister()
-			loggedUserIndex = PrintLogin(users)
-			isSuccess = true
+			PrintRegister(users, nUsers)
+			*action = 1
 		case 3:
 			helpers.PrintExitMessage()
-			loggedUserIndex = -1
+			isSuccess = true
 		default:
 			helpers.PrintErrorMessage()
-			loggedUserIndex = -1
 		}
 	}
 
 	return loggedUserIndex
 }
 
-func PrintLogin(users *[]model.User) int {
+func PrintLogin(users *[model.MaxUser]model.User) int {
 	var tempUser model.User
 	var loggedUserId int
 	var isSuccess bool
 
 	for loggedUserId != -1 && !isSuccess {
 		fmt.Println("")
+		fmt.Println("=============================")
+		fmt.Println("Login Page")
 		fmt.Println("=============================")
 		fmt.Println("Masukan username kamu")
 		fmt.Print("> ")
@@ -60,7 +62,7 @@ func PrintLogin(users *[]model.User) int {
 		fmt.Print("> ")
 		fmt.Scan(&tempUser.Password)
 
-		loggedUserId = user.AttemptLogin(&tempUser, []model.User{})
+		loggedUserId = user.AttemptLogin(&tempUser, users)
 
 		if loggedUserId == -1 {
 			helpers.PrintFailedLoginMessage()
@@ -74,13 +76,16 @@ func PrintLogin(users *[]model.User) int {
 	return loggedUserId
 }
 
-func PrintRegister() int {
+func PrintRegister(users *[model.MaxUser]model.User, nUsers *int) bool {
 	var tempUser model.User
-	var loggedUserId int
-	var isSuccess bool
+	var isRegistered bool
 
-	for loggedUserId != -1 && !isSuccess {
+	isCancel := 1
+
+	for !isRegistered && isCancel == 1 {
 		fmt.Println("")
+		fmt.Println("=============================")
+		fmt.Println("Register Page")
 		fmt.Println("=============================")
 		fmt.Println("Masukan username kamu")
 		fmt.Print("> ")
@@ -89,16 +94,25 @@ func PrintRegister() int {
 		fmt.Print("> ")
 		fmt.Scan(&tempUser.Password)
 
-		loggedUserId = user.RegisterUser(&tempUser, []model.User{})
+		isRegistered = user.RegisterUser(&tempUser, users, nUsers)
 
-		if loggedUserId == -1 {
+		if !isRegistered {
 			helpers.PrintFailedRegisterMessage()
+
+			fmt.Println("=============================")
+			fmt.Println("Lanjut mendaftar?")
+			fmt.Print("> ")
+			fmt.Println("1. Iya")
+			fmt.Println("2. Tidak")
+			fmt.Scan(&isCancel)
 		} else {
-			isSuccess = true
+			*nUsers += 1
+			fmt.Println("")
+			fmt.Println("User berhasil diregistrasi!")
 		}
 	}
 
 	fmt.Println("=============================")
 
-	return loggedUserId
+	return isRegistered
 }

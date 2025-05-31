@@ -4,8 +4,12 @@ import (
 	"SleepTrack/model"
 )
 
-func SeedUsers() []model.User {
-	return []model.User{
+func SeedUsers(nUser *int) [model.MaxUser]model.User {
+	// Update total users
+	*nUser = 2
+
+	// Return users
+	return [model.MaxUser]model.User{
 		{
 			Username: "andi",
 			Password: "123",

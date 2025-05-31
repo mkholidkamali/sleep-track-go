@@ -21,6 +21,10 @@ func PrintLandingPage(action *int, user *model.User) {
 		switch *action {
 		case 1:
 			user.Sleeps[0] = PrintInputNewHistory()
+		case 2:
+			//
+		case 3:
+			PrintAboutPage()
 		default:
 			helpers.PrintExitMessage()
 		}
