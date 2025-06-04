@@ -15,5 +15,4 @@ func PrintAboutPage() {
 	fmt.Println("NIM   : 103042400085")
 	fmt.Println("Kelas : IF 048-01-PJJ")
 	fmt.Println("=============================")
-	fmt.Println()
 }

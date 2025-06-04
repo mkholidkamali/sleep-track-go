@@ -20,13 +20,16 @@ func PrintLandingPage(action *int, user *model.User) {
 
 		switch *action {
 		case 1:
-			user.Sleeps[0] = PrintInputNewHistory()
+			user.Sleeps[user.TotalSleeps] = PrintInputNewHistory()
+			user.TotalSleeps++
 		case 2:
-			//
+			PrintShowSleepHistory(action, user)
 		case 3:
 			PrintAboutPage()
 		default:
 			helpers.PrintExitMessage()
 		}
 	}
+
+	fmt.Println("Hasil akhir : ", user.Sleeps)
 }

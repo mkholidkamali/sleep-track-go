@@ -6,6 +6,8 @@ import (
 )
 
 func InputSelectedAction(sleepRecord *model.SleepRecord) {
+	// for
+
 	fmt.Println("--- Start : Input Data ---")
 	fmt.Println("Tanggal (Format : ddmmyy, contoh : 230525)")
 	fmt.Print("> ")

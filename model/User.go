@@ -3,6 +3,6 @@ package model
 type User struct {
 	Username    string
 	Password    string
-	Sleeps      []SleepRecord
+	Sleeps      [MaxSleep]SleepRecord
 	TotalSleeps int
 }
