@@ -31,3 +31,13 @@ func PrintFailedRegisterMessage() {
 	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	fmt.Println()
 }
+
+func PrintFailedSearchMessage() {
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+	fmt.Println("Data tidak ditemukan!")
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+}

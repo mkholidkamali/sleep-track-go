@@ -9,6 +9,7 @@ func InputSelectedAction(sleepRecord *model.SleepRecord) {
 	// for
 
 	fmt.Println("--- Start : Input Data ---")
+	fmt.Println("")
 	fmt.Println("Tanggal (Format : ddmmyy, contoh : 230525)")
 	fmt.Print("> ")
 	fmt.Scan(&sleepRecord.Date)
@@ -25,6 +26,7 @@ func InputSelectedAction(sleepRecord *model.SleepRecord) {
 	fmt.Print("> ")
 	fmt.Scan(&sleepRecord.SleepEnd)
 	// !TODO : Validate
+	fmt.Println("")
 	fmt.Println("--- End : Input Data ---")
 
 	calculateTotalSleepHour(sleepRecord)
