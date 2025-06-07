@@ -15,8 +15,7 @@ func InputSelectedAction(action *int) {
 	fmt.Println("1. Ubah urutan")
 	fmt.Println("2. Cari dan edit jadwal tidur")
 	fmt.Println("3. Laporan hasil jadwal 7 hari terakhir")
-	fmt.Println("4. Rekomendasi jadwal tidur")
-	fmt.Println("5. Exit")
+	fmt.Println("4. Exit")
 	fmt.Print("> ")
 	fmt.Scan(action)
 	fmt.Println("=============================")
@@ -188,18 +187,60 @@ func EditSleepHistory(action *int, sleep *model.SleepRecord) {
 	fmt.Println("=============================")
 }
 
-func LastWeekSleeps(sleeps *[model.MaxSleep]model.SleepRecord, total int) {
-	// ntar di sort pake tanggal
+func CalculateTotalSleepInWeek(sleepRecord *[model.MaxSleep]model.SleepRecord) int {
+	totalSleep := CountTotalSleep(sleepRecord)
 
-	var averageDuration float64
-
-	if total < 7 {
-		total = 7
-	}
-	for i := 0; i < total; i++ {
-		averageDuration += sleeps[i].Duration
+	startIndex := 0
+	if totalSleep > 7 {
+		startIndex = totalSleep - 7
 	}
 
-	// Averagenya harus di adjut lagi supaya nilai di blkg koma (0,) disesuain sm format menit
-	fmt.Printf("%.2f", averageDuration/float64(total))
+	totalDays := 0
+	lastDate := ""
+
+	for i := startIndex; i < totalSleep; i++ {
+		if sleepRecord[i].Date != lastDate {
+			totalDays++
+			lastDate = sleepRecord[i].Date
+		}
+	}
+
+	return totalDays
+}
+
+func CalculateTotalSleepHour(sleepRecord *[model.MaxSleep]model.SleepRecord) float64 {
+	totalSleep := CountTotalSleep(sleepRecord)
+
+	startIndex := 0
+	if totalSleep > 7 {
+		startIndex = totalSleep - 7
+	}
+
+	var totalHours float64
+
+	for i := startIndex; i < totalSleep; i++ {
+		totalHours += sleepRecord[i].Duration
+	}
+
+	return totalHours
+}
+
+func CalculateAverageSleepHour(sleepRecord *[model.MaxSleep]model.SleepRecord) float64 {
+	totalDays := CalculateTotalSleepInWeek(sleepRecord)
+	if totalDays == 0 {
+		return 0
+	}
+
+	totalHours := CalculateTotalSleepHour(sleepRecord)
+	return totalHours / float64(totalDays)
+}
+
+func CountTotalSleep(sleeps *[model.MaxSleep]model.SleepRecord) int {
+	totalSleep := 0
+	for i := 0; i < 7; i++ {
+		if sleeps[i].Date != "" {
+			totalSleep++
+		}
+	}
+	return totalSleep
 }

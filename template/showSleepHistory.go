@@ -14,7 +14,7 @@ func PrintShowSleepHistory(action *int, user *model.User) {
 	// Show all data
 	showAllHistory(user, &sortedBy, &sortedType)
 
-	for *action != 5 {
+	for *action != 4 {
 		// Input selected action
 		showSleepHistory.InputSelectedAction(action)
 
@@ -25,11 +25,7 @@ func PrintShowSleepHistory(action *int, user *model.User) {
 		case 2:
 			showSleepHistory.InputSearcAndEditAction(action, user)
 		case 3:
-			showSleepHistory.LastWeekSleeps(&user.Sleeps, user.TotalSleeps)
-		case 4:
-			//
-		case 5:
-			//
+			weeklyReportAction(&user.Sleeps, user.TotalSleeps)
 		default:
 			helpers.PrintErrorMessage()
 		}
@@ -59,4 +55,26 @@ func showAllHistory(user *model.User, sortedBy *string, sortedType *string) {
 		}
 	}
 	fmt.Println("---- End : Riwayat Tidur ----")
+}
+
+func weeklyReportAction(sleeps *[model.MaxSleep]model.SleepRecord, total int) {
+	showSleepHistory.SortbyDate(sleeps, total)
+
+	fmt.Println()
+	fmt.Println("--- Start : Report 7 Hari Terakhir ---")
+	fmt.Println()
+
+	showSleepHistory.SortbyDate(sleeps, total)
+
+	totalDay := showSleepHistory.CalculateTotalSleepInWeek(sleeps)
+	totalHour := showSleepHistory.CalculateTotalSleepHour(sleeps)
+	averageHour := showSleepHistory.CalculateAverageSleepHour(sleeps)
+
+	fmt.Println("Jumlah hari         : ", totalDay)
+	fmt.Println("Jumlah Jam Tidur    : ", totalHour)
+	fmt.Println("Rata-rata Jam Tidur : ", averageHour)
+
+	fmt.Println()
+	fmt.Println("--- Start : Report 1 Hari Terakhir ---")
+	fmt.Println("")
 }

@@ -5,15 +5,26 @@ import (
 	"strconv"
 )
 
+func ExtractDay(dateInt int) int {
+	return dateInt / 10000
+}
+
+func ExtractMonth(dateInt int) int {
+	return (dateInt / 100) % 100
+}
+
+func ExtractYear(dateInt int) int {
+	return 2000 + (dateInt % 100)
+}
+
 func PrintFormattedDate(dateString string) string {
 	// Convert into int
 	dateInt, _ := strconv.Atoi(dateString)
 
 	// Explode date
-	dd := dateInt / 10000
-	mm := (dateInt / 100) % 100
-	yy := dateInt % 100
-	tahun := 2000 + yy
+	dd := ExtractDay(dateInt)
+	mm := ExtractMonth(dateInt)
+	tahun := ExtractYear(dateInt)
 
 	// Ambil nama bulan
 	namaBulan := getMonth(mm)
