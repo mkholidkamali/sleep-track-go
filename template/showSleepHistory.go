@@ -26,6 +26,7 @@ func PrintShowSleepHistory(action *int, user *model.User) {
 			showSleepHistory.InputSearcAndEditAction(action, user)
 		case 3:
 			weeklyReportAction(&user.Sleeps, user.TotalSleeps)
+		case 4:
 		default:
 			helpers.PrintErrorMessage()
 		}
@@ -51,7 +52,7 @@ func showAllHistory(user *model.User, sortedBy *string, sortedType *string) {
 			fmt.Println("Tanggal      :", helpers.PrintFormattedDate(sleepRecord.Date))
 			fmt.Println("Jam Tidur    :", helpers.PrintFormattedHour(sleepRecord.SleepStart))
 			fmt.Println("Jam Bangun   :", helpers.PrintFormattedHour(sleepRecord.SleepEnd))
-			fmt.Printf("Durasi Tidur : %.f\n\n", (sleepRecord.Duration))
+			fmt.Printf("Durasi Tidur : %.2f\n\n", (sleepRecord.Duration))
 		}
 	}
 	fmt.Println("---- End : Riwayat Tidur ----")
@@ -75,6 +76,6 @@ func weeklyReportAction(sleeps *[model.MaxSleep]model.SleepRecord, total int) {
 	fmt.Println("Rata-rata Jam Tidur : ", averageHour)
 
 	fmt.Println()
-	fmt.Println("--- Start : Report 1 Hari Terakhir ---")
+	fmt.Println("--- Start : Report 7 Hari Terakhir ---")
 	fmt.Println("")
 }

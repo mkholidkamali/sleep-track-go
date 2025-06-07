@@ -20,7 +20,7 @@ func PrintLandingPage(action *int, user *model.User) {
 
 		switch *action {
 		case 1:
-			user.Sleeps[user.TotalSleeps] = PrintInputNewHistory()
+			user.Sleeps[user.TotalSleeps] = PrintInputNewHistory(&user.Sleeps, user.TotalSleeps)
 			user.TotalSleeps++
 		case 2:
 			PrintShowSleepHistory(action, user)
@@ -30,6 +30,4 @@ func PrintLandingPage(action *int, user *model.User) {
 			helpers.PrintExitMessage()
 		}
 	}
-
-	fmt.Println("Hasil akhir : ", user.Sleeps)
 }

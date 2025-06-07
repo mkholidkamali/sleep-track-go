@@ -27,10 +27,7 @@ func RegisterUser(attemptUser *model.User, users *[model.MaxUser]model.User, nUs
 	return true
 }
 
-/**
-* Private Method
-* Algorithm : Sequential
- */
+// Algorithm Search: Sequential
 func searchUser(attemptUser model.User, users [model.MaxUser]model.User, isCheckPassword bool) int {
 	// Initialize user index
 	userIndex := -1

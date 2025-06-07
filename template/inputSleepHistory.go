@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func PrintInputNewHistory() model.SleepRecord {
+func PrintInputNewHistory(existingSleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) model.SleepRecord {
 	var SleepRecord model.SleepRecord
 
 	fmt.Println()
@@ -14,7 +14,7 @@ func PrintInputNewHistory() model.SleepRecord {
 	fmt.Println("Masukan waktu tidur kamu!")
 	fmt.Println()
 
-	inputSleepHistory.InputSelectedAction(&SleepRecord)
+	inputSleepHistory.InputSelectedAction(&SleepRecord, existingSleeps, totalSleep)
 
 	fmt.Println()
 	fmt.Println("Review data kamu")

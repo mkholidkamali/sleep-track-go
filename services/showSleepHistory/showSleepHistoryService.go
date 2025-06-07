@@ -84,7 +84,7 @@ func InputSearcAndEditAction(action *int, user *model.User) {
 	}
 }
 
-// Algorithm : Insertion
+// Algorithm Sort : Insertion
 func SortbyDuration(sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) {
 	for i := 1; i < totalSleep; i++ {
 		key := sleeps[i]
@@ -98,7 +98,7 @@ func SortbyDuration(sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) {
 	}
 }
 
-// Algorithm : Selection
+// Algorithm Sort : Selection
 func SortbyDate(sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) {
 	for i := 0; i < totalSleep-1; i++ {
 		maxIdx := i
@@ -114,7 +114,7 @@ func SortbyDate(sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) {
 	}
 }
 
-// Algorithm : Binary
+// Algorithm Search: Binary
 func SearchByDate(searchedDate string, sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) int {
 	// Initialize
 	low := 0
