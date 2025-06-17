@@ -165,7 +165,11 @@ func EditSleepHistory(action *int, sleep *model.SleepRecord) {
 		} else if *action == 3 {
 			editedCategory = "Jam Bangun"
 			before = helpers.PrintFormattedHour(sleep.SleepEnd)
+		} else if *action == 4 {
+			return
 		} else {
+			helpers.PrintErrorMessage()
+			EditSleepHistory(action, sleep)
 			return
 		}
 

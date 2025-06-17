@@ -18,10 +18,12 @@ func InputSelectedAction(sleepRecord *model.SleepRecord, existingSleeps *[model.
 	if !ValidateDate(sleepRecord.Date) {
 		helpers.PrintErrorMessage()
 		InputSelectedAction(sleepRecord, existingSleeps, totalSleep)
+		return
 	}
 	if !ValidateExistingDate(sleepRecord.Date, existingSleeps, totalSleep) {
-		helpers.PrintErrorMessage()
+		helpers.PrintExistMessage()
 		InputSelectedAction(sleepRecord, existingSleeps, totalSleep)
+		return
 	}
 
 	fmt.Println()
@@ -31,6 +33,7 @@ func InputSelectedAction(sleepRecord *model.SleepRecord, existingSleeps *[model.
 	if !ValidateTime(sleepRecord.SleepStart) {
 		helpers.PrintErrorMessage()
 		InputSelectedAction(sleepRecord, existingSleeps, totalSleep)
+		return
 	}
 
 	fmt.Println()
@@ -40,6 +43,7 @@ func InputSelectedAction(sleepRecord *model.SleepRecord, existingSleeps *[model.
 	if !ValidateTime(sleepRecord.SleepEnd) {
 		helpers.PrintErrorMessage()
 		InputSelectedAction(sleepRecord, existingSleeps, totalSleep)
+		return
 	}
 
 	fmt.Println("")
@@ -78,7 +82,7 @@ func ValidateDate(dateString string) bool {
 }
 
 func ValidateExistingDate(dateString string, sleeps *[model.MaxSleep]model.SleepRecord, totalSleep int) bool {
-	return showSleepHistory.SearchByDate(dateString, sleeps, totalSleep) != -1
+	return showSleepHistory.SearchByDate(dateString, sleeps, totalSleep) == -1
 }
 
 func ValidateTime(timeString string) bool {

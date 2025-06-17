@@ -15,7 +15,8 @@ func main() {
 	users := seeders.SeedUsers(&nUsers)
 
 	// Show user login
-	loggedUserIndex = template.PrintIntroduction(&action, &users, &nUsers)
+	// loggedUserIndex = template.PrintIntroduction(&action, &users, &nUsers)
+	loggedUserIndex = 0
 
 	// Show landing page
 	if loggedUserIndex != -1 {

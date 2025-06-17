@@ -41,3 +41,13 @@ func PrintFailedSearchMessage() {
 	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	fmt.Println()
 }
+
+func PrintExistMessage() {
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+	fmt.Println("Tanggal yang diinput sudah ada!")
+	fmt.Println()
+	fmt.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	fmt.Println()
+}
